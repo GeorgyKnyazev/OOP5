@@ -46,11 +46,8 @@ namespace OOP5
                     case ExitInMenu:
                         isWork = false;
                         break;
-
                 }
-
             }
-
         }
     }
 
@@ -68,7 +65,6 @@ namespace OOP5
         public string Author { get; private set; }
         public int Year { get; private set; }
         public int Index { get; private set; }
-
     }
 
     class Library
@@ -80,17 +76,13 @@ namespace OOP5
         {
             Console.Clear();
 
-            string title;
-            string author;
-            int year;
-
             string titleTextInMenu = "Введите название книги: ";
             string authorTextInMenu = "Введите автора книги: ";
             string yearTextInMenu = "Введите год выпуска книги: ";
 
-            title = GetTitle(titleTextInMenu);
-            author = GetAuthor(authorTextInMenu);
-            year = GetYear(yearTextInMenu);
+            string title = GetString(titleTextInMenu);
+            string author = GetString(authorTextInMenu);
+            int year = GetYear(yearTextInMenu);
 
             AddBook(title, author, year);
         }
@@ -138,13 +130,12 @@ namespace OOP5
 
         public void DeleteBook()
         {
-            int index;
             string deleteBookText = "Введите индекс книги для удаления: ";
 
             Console.Clear();
             ShowAllBook();
 
-            index = TakeNumber(deleteBookText);
+             int index = TakeNumber(deleteBookText);
             
             foreach (Book book in _books)
             {
@@ -158,13 +149,12 @@ namespace OOP5
 
         private void SearchTitle()
         {
-            string userInput;
             bool isBookSearch = false;
 
             Console.Clear();
-            Console.Write("Введите название книги которую хотите найти: ");
+            Console.Write("Введите название книги, которую хотите найти: ");
 
-            userInput = Console.ReadLine();
+            string userInput = Console.ReadLine();
 
             foreach (Book book in _books)
             {
@@ -185,13 +175,12 @@ namespace OOP5
 
         private void SearchAuthor()
         {
-            string userInput;
             bool isBookSearch = false;
 
             Console.Clear();
-            Console.Write("Введите название книги которую хотите найти: ");
+            Console.Write("Введите автора книги, которую хотите найти: ");
 
-            userInput = Console.ReadLine();
+            string userInput = Console.ReadLine();
 
             foreach (Book book in _books)
             {
@@ -212,13 +201,12 @@ namespace OOP5
 
         private void SearchYear()
         {
-            int year;
             bool isBookSearch = false;
             string searhBookYear = "Введите год издания";
             
             Console.Clear();
 
-            year = TakeNumber(searhBookYear);
+            int year = TakeNumber(searhBookYear);
 
             foreach (Book book in _books)
             {
@@ -237,28 +225,16 @@ namespace OOP5
             Console.ReadKey();
         }
 
-        private string GetTitle(string text)
+        private string GetString(string text)
         {
-            string userInput;
-
             Console.Write(text);
-            userInput = Console.ReadLine();
-
-            return userInput;
-        }
-
-        private string GetAuthor(string text)
-        {
-            string userInput;
-            Console.Write(text);
-            userInput = Console.ReadLine();
+            string userInput = Console.ReadLine();
 
             return userInput;
         }
 
         private int GetYear(string text)
         {
-            string userInput;
             bool result = false;
             int number = -1;
 
@@ -266,7 +242,7 @@ namespace OOP5
             {
                 Console.Write(text);
 
-                userInput = Console.ReadLine();
+                string userInput = Console.ReadLine();
                 result = int.TryParse(userInput, out number);
 
                 if (result == false)
@@ -289,14 +265,13 @@ namespace OOP5
         private int TakeNumber(string text)
         {
             bool result = false;
-            string userInput;
             int number = 0;
 
             while (result == false)
             {
                 Console.Write(text);
 
-                userInput = Console.ReadLine();
+                string userInput = Console.ReadLine();
                 result = int.TryParse(userInput, out number);
 
                 if (result == false)
@@ -309,5 +284,4 @@ namespace OOP5
             return number;
         }
     }
-
 }
